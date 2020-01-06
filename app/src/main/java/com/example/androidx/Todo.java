@@ -5,21 +5,25 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Todo {
-
-    private String titile;
-    @PrimaryKey (autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
     private Integer id;
+    private String title;
 
-    public String getTitile() {
-        return titile;
+
+    public Todo(String title){
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public void setTitile(String titile) {
-        this.titile = titile;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setId(Integer id) {
@@ -29,7 +33,7 @@ public class Todo {
     @Override
     public String toString() {
         return "Todo{" +
-                "titile='" + titile + '\'' +
+                "title='" + title + '\'' +
                 ", id=" + id +
                 '}';
     }

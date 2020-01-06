@@ -23,17 +23,20 @@ public class MainActivity extends AppCompatActivity {
         mTodoEditText = findViewById(R.id.todo_edit);
         mResuiltTextView = findViewById(R.id.result_text);
 
-        AppDatabase db = Room.databaseBuilder(this, AppDatabase.class, "todo-db")
+        final AppDatabase db = Room.databaseBuilder(this, AppDatabase.class, "todo-db")
                 .allowMainThreadQueries()
                 .build();
 
 
         mResuiltTextView.setText(db.todoDao().getAll().toString());
 
-        findViewById(R.id.add_button).setOnClickListener(
+        findViewById(R.id.add_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 db.todoDao().insert(new Todo(mTodoEditText.getText().toString()));
                 mResuiltTextView.setText(db.todoDao().getAll().toString());
-        );
+            }
+        });
 
     }
 }
